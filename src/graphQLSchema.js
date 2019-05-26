@@ -4,13 +4,12 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 import { mergeSchemas } from './utilities';
 
-import {
-	postsMutations,
-	postsQueries,
-	postsTypeDef
-} from './merida/typeDefs';
+import {	
+	postsTypeDef,
+	feedQueries
+} from './moana/typeDefs';
 
-import coursesResolvers from './merida/resolvers';
+import coursesResolvers from './moana/resolvers';
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
@@ -19,10 +18,7 @@ const mergedTypeDefs = mergeSchemas(
 		postsTypeDef
 	],
 	[
-		postsQueries
-	],
-	[
-		postsMutations
+		feedQueries
 	]
 );
 

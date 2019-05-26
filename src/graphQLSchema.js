@@ -8,9 +8,9 @@ import {
 	postsMutations,
 	postsQueries,
 	postsTypeDef
-} from './courses/typeDefs';
+} from './merida/typeDefs';
 
-import coursesResolvers from './courses/resolvers';
+import coursesResolvers from './merida/resolvers';
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(

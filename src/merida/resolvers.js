@@ -1,6 +1,8 @@
-import { generalRequest, getRequest } from '../utilities';
+import { generalRequest } from '../utilities';
 
-const URL = `http://localhost:3000/posts/`;
+import { url, port, entryPoint } from './server';
+
+const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {

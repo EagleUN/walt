@@ -7,7 +7,7 @@ services:
       SHOW_URLS: 'true'
       EAGLE_UN_URL: '192.168.99.101'
       VANELLOPE_PORT: '3001'
-      VANELLOPE_ENTRY: 'vanellope'
+      VANELLOPE_ENTRY: ''
       #ANA_PORT: '4000'
       #ANA_ENTRY: 'ana'
       #MULAN_PORT: '4100'

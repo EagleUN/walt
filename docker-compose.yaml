@@ -1,0 +1,20 @@
+version: '3'
+services:
+  rapunzel_api:
+    build: ./eagle_gateway/rapunzel_api
+    environment:
+      PORT: '5000'
+      SHOW_URLS: 'true'
+      RAPUNZEL_URL: 'rapunzel'
+      RAPUNZEL_PORT: '5050'
+    ports:
+      - '5000:5000'
+  rapunzel:
+    build: ./rapunzel
+    command: python -u app.py
+    ports:
+      - "5055:5050"
+    depends_on:
+      - rapunzel_db
+  rapunzel_db:
+      image: mongo:3.0.2

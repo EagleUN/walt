@@ -6,13 +6,15 @@ const URL = `http://${url}:${port}`;
 const resolvers = {
 	Query: {
 		allNotifications: (_) =>
-			getRequest(`${URL}/notifications`, 'GET'),
+			generalRequest(`${URL}/notifications`, 'GET'),
 		NotificationByUser: (_, { user }) =>
-			generalRequest(`${URL}/notification/${user}`, 'GET'),
+			generalRequest(`${URL}/notifications/${user}`, 'GET'),
 	},
 	Mutation: {
-		createNotification: (_, { notification }) =>
-			generalRequest(`${URL}/users/${notification.notificated_user}/posts/${notification.post_id}/shares/${notifications.follower}`, 'POST')
+		createShareNotification: (_, { notification }) =>
+			generalRequest(`${URL}/users/${notification.notificated_user}/posts/${notification.post_id}/shares/${notification.follower}`, 'POST'),
+		createFollowNotification: (_, { notification }) =>
+			generalRequest(`${URL}/users/${notification.notificated_user}/followers/${notification.follower}`, 'POST' )
 	}
 };
 

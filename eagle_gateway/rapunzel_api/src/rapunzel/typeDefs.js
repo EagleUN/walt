@@ -1,6 +1,10 @@
 export const notificationTypeDef = `
+type ID {
+    oid: String!
+}
+
 type Notification {
-    id: String!
+    id: ID!
     notificated_user: String!
     follower: String!
     date: String!
@@ -15,9 +19,10 @@ input NotificationInput {
 
 export const notificationQueries = `
     allNotifications: [Notification]!
-    NotificationByUser(user: String!): Notification!
+    NotificationByUser(user: String!): [Notification]!
 `;
 
 export const notificationMutations = `
-    createNotification(notification: NotificationInput!): Notification!
+    createShareNotification(notification: NotificationInput!): Notification!
+    createFollowNotification(notification: NotificationInput!): Notification!
 `;

@@ -18,7 +18,7 @@
 		]
 	},
 	"keywords": [],
-	"author": "Jeisson Vergara-Vargas",
+	"author": "Jeisson Vergara-Vargas and EagleUN",
 	"license": "MIT",
 	"dependencies": {
 		"@koa/cors": "^2.2.1",

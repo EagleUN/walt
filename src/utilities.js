@@ -72,9 +72,10 @@ export function getRequest(url, path, parameters) {
  * @param {Array<string>} mutations
  * @return {string}
  */
-export function mergeSchemas(typeDefs, queries) {
+export function mergeSchemas(typeDefs, queries, mutations) {
 	return `${typeDefs.join('\n')}
-    type Query { ${queries.join('\n')} }`;
+    type Query { ${queries.join('\n')} }
+    type Mutation { ${mutations.join('\n')} }`;
 }
 
 export function formatErr(error) {

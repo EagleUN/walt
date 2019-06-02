@@ -9,5 +9,9 @@ services:
       MULAN_PORT: '8080'
       MULAN_ENTRY: 'shares'
       RAPUNZEL_PORT: '5050'
+      MOANA_PORT: '3000'
+      MOANA_ENTRY: 'feeds'
+      MERIDA_PORT: '3002'
+      MERIDA_ENTRY: 'posts'
     ports:
       - '5000:5000'

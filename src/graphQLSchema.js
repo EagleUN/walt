@@ -14,12 +14,6 @@ import {
 	anaTypeDef,
 } from './ana/typeDefs';
 
-import {
-	postsMutations,
-	postsQueries,
-	postsTypeDef
-} from './merida/typeDefs';
-
 import {	
 	feedTypeDef,
 	feedQueries
@@ -31,10 +25,24 @@ import {
 	mulanTypeDef
 } from './mulan/typeDefs';
 
+import {
+	postsMutations,
+	postsQueries,
+	postsTypeDef
+} from './merida/typeDefs';
+
+import {
+	vanellopeMutations,
+	vanellopeQueries,
+	vanellopeTypeDef
+} from './vanellope/typeDefs';
+
+
 import anaResolvers from './ana/resolvers';
 import feedResolvers from './moana/resolvers';
 import postsResolvers from './merida/resolvers';
 import mulanResolvers from './mulan/resolvers';
+import vanellopeResolvers from './vanellope/resolvers';
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
@@ -44,18 +52,21 @@ const mergedTypeDefs = mergeSchemas(
 		anaTypeDef,
 		feedTypeDef,
 		mulanTypeDef,
-		postsTypeDef
+		postsTypeDef,
+		vanellopeTypeDef
 	],
 	[
 		anaQueries,
 		feedQueries,
 		mulanQueries,
-		postsQueries
+		postsQueries,
+		vanellopeQueries
 	],
 	[
 		anaMutations,
 		mulanMutations,
-		postsMutations
+		postsMutations,
+		vanellopeMutations
 	]
 );
 
@@ -67,6 +78,7 @@ export default makeExecutableSchema({
 		feedResolvers,
 		anaResolvers,
 		postsResolvers,
-		mulanResolvers
+		mulanResolvers,
+		vanellopeResolvers
 	)
 });

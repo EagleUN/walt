@@ -12,7 +12,7 @@ type Notification {
     post_id: String
 }
 input NotificationInput {
-    notificated_user: String!
+    notificated_user: String
     follower: String!
     post_id: String
 }`;

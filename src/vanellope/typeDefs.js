@@ -32,6 +32,10 @@ input EmailUser{
     email: String!
 }
 
+input IdUser{
+    id: String!
+}
+
 input loginUser{
     email: String!
     password: String!
@@ -39,6 +43,7 @@ input loginUser{
 
 export const vanellopeQueries = `
     allUsers: userList!
+    userById(id: IdUser!): User!
     userByEmail(email: EmailUser!): User!
     //tokenUser: String
 `;

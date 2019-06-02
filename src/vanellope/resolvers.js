@@ -7,8 +7,10 @@ const resolvers = {
 	Query: {
 		allUsers: (_) =>
 			generalRequest(`${URL}signup/users`, 'GET'),
+		userById: (_, { id }) =>
+			generalRequest(`${URL}signup/user_id`, 'GET', id),
 		userByEmail: (_, { email }) =>
-			generalRequest(`${URL}signup/user`, 'GET', email),
+			generalRequest(`${URL}signup/user_email`, 'GET', email),
 		//tokenUser: (_) =>
 		//	generalRequest(`${URL}log/user`, 'GET'),
 	},

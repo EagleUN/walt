@@ -1,0 +1,23 @@
+version: '2'
+services:
+  eagle_un_api:
+    build: .
+    environment:
+      PORT: '7000'
+      SHOW_URLS: 'true'
+      EAGLE_UN_URL: '192.168.99.107'
+      #EAGLE_UN_URL: '127.0.0.1'
+      VANELLOPE_PORT: '3001'
+      VANELLOPE_ENTRY: ''
+      #ANA_PORT: '4000'
+      #ANA_ENTRY: 'ana'
+      #MULAN_PORT: '4100'
+      #MULAN_ENTRY: 'mulan'
+      #MOANA_PORT: '3003'
+      #MOANA_ENTRY: 'moana'
+      #MERIDA_PORT: '7999'
+      #MERIDA_ENTRY: 'merida'
+      #RAPUNZEL_PORT: '3009'
+      #RAPUNZEL_ENTRY: 'rapunzel'
+    ports:
+      - '7000:7000'

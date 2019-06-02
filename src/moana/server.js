@@ -1,3 +1,3 @@
-export const url = 'localhost'
-export const port = '3000'
-export const entryPoint = 'feeds'
+export const url = process.env.EAGLEUN_URL
+export const port = process.env.MOANA_PORT
+export const entryPoint = process.env.MOANA_ENTRY

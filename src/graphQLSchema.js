@@ -4,6 +4,10 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 import { mergeSchemas } from './utilities';
 
+import {	
+	feedTypeDef,
+	feedQueries
+} from './moana/typeDefs';
 
 import {
 	anaMutations,
@@ -12,15 +16,19 @@ import {
 } from './ana/typeDefs';
 
 import anaResolvers from './ana/resolvers';
+import feedResolvers from './moana/resolvers';
+
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
-		anaTypeDef
+		anaTypeDef,
+		feedTypeDef
 	],
 	[
-		anaQueries
+		anaQueries,
+		feedQueries
 	],
 	[
 		anaMutations
@@ -32,7 +40,7 @@ export default makeExecutableSchema({
 	typeDefs: mergedTypeDefs,
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
-		//coursesResolvers,
+		feedResolvers,
 		anaResolvers
 	)
 });

@@ -1,11 +1,12 @@
-ANA: '2'
+version: '2'
 services:
   eagle_un_api:
     build: .
     environment:
       PORT: '7000'
       SHOW_URLS: 'true'
-      EAGLE_UN_URL: '192.168.99.101'
+      EAGLE_UN_URL: '192.168.99.107'
+      #EAGLE_UN_URL: '127.0.0.1'
       VANELLOPE_PORT: '3001'
       VANELLOPE_ENTRY: ''
       #ANA_PORT: '4000'

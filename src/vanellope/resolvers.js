@@ -6,23 +6,23 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 const resolvers = {
 	Query: {
 		allUsers: (_) =>
-			getRequest(`${URL}/signup/users`, 'GET'),
+			generalRequest(`${URL}signup/users`, 'GET'),
 		userByEmail: (_, { email }) =>
-			generalRequest(`${URL}/signup/user`, 'GET', email),
-		tokenUser: (_) =>
-			generalRequest(`${URL}/log/user`, 'GET'),
+			generalRequest(`${URL}signup/user`, 'GET', email),
+		//tokenUser: (_) =>
+		//	generalRequest(`${URL}log/user`, 'GET'),
 	},
 	Mutation: {
 		createUser: (_, { user }) =>
-			generalRequest(`${URL}/signup/user/create`, 'POST', user),
+			generalRequest(`${URL}signup/user/create`, 'POST', user),
 		updateUser: (_, { user }) =>
-			generalRequest(`${URL}/signup/user`, 'PATCH', user),
+			generalRequest(`${URL}signup/user`, 'PATCH', user),
 		deleteUser: (_, { id }) =>
-			generalRequest(`${URL}/signup/user`, 'DELETE', id),
+			generalRequest(`${URL}signup/user`, 'DELETE', id),
 		createNewUserSession: (_, { userSession }) =>
-			generalRequest(`${URL}/log/user/in`, 'POST', userSession),
+			generalRequest(`${URL}log/user/in`, 'POST', userSession),
 		deleteUserSession: (_) =>
-			generalRequest(`${URL}/log/user/out`, 'DELETE')
+			generalRequest(`${URL}log/user/out`, 'DELETE')
 	}
 };
 

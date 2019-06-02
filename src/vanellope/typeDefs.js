@@ -14,6 +14,11 @@ input NewUser {
     password_confirmation: String!
 }
 
+type userList {
+    total: Int!
+    list: [User]!
+}
+
 input updateUser {
     name: String!
     last_name: String!
@@ -23,15 +28,19 @@ input updateUser {
     current_password: String!
 }
 
+input EmailUser{
+    email: String!
+}
+
 input loginUser{
     email: String!
     password: String!
 }`;
 
 export const vanellopeQueries = `
-    allUsers: [User]!
-    UserByEmail(email: String!): User!
-    tokenUser: String
+    allUsers: userList!
+    userByEmail(email: EmailUser!): User!
+    //tokenUser: String
 `;
 
 export const vanellopeMutations = `

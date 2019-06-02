@@ -11,7 +11,7 @@ import {
 } from './vanellope/typeDefs';
 
 import vanellopeResolvers from './vanellope/resolvers';
-
+/*
 import {
 	meridaMutations,
 	meridaQueries,
@@ -51,33 +51,33 @@ import {
 } from './mulan/typeDefs';
 
 import mulanResolvers from './mulan/resolvers';
-
+*/
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
 		vanellopeTypeDef
-		meridaTypeDef
+		/*meridaTypeDef
 		moanaTypeDef
 		anaTypeDef
 		rapunzelTypeDef
-		mulanTypeDef
+		mulanTypeDef*/
 	],
 	[
 		vanellopeQueries
-		meridaQueries
+		/*meridaQueries
 		moanaQueries
 		anaQueries
 		rapunzelQueries
-		mulanQueries
+		mulanQueries*/
 	],
 	[
 		vanellopeMutations
-		meridaMutations
+		/*meridaMutations
 		moanaMutations
 		anaMutations
 		rapunzelMutations
-		mulanMutations
+		mulanMutations*/
 	]
 );
 
@@ -87,10 +87,10 @@ export default makeExecutableSchema({
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		vanellopeResolvers
-		meridaResolvers
+		/*meridaResolvers
 		moanaResolvers
 		anaResolvers
 		rapunzelResolvers
-		mulanResolvers
+		mulanResolvers*/
 	)
 });

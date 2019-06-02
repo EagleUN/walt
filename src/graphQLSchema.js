@@ -26,6 +26,12 @@ import {
 } from './mulan/typeDefs';
 
 import {
+	notificationMutations,
+	notificationQueries,
+	notificationTypeDef
+} from './rapunzel/typeDefs';
+
+import {
 	postsMutations,
 	postsQueries,
 	postsTypeDef
@@ -43,6 +49,7 @@ import feedResolvers from './moana/resolvers';
 import postsResolvers from './merida/resolvers';
 import mulanResolvers from './mulan/resolvers';
 import vanellopeResolvers from './vanellope/resolvers';
+import notificationResolvers from './rapunzel/resolvers';
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
@@ -53,20 +60,23 @@ const mergedTypeDefs = mergeSchemas(
 		feedTypeDef,
 		mulanTypeDef,
 		postsTypeDef,
-		vanellopeTypeDef
+		vanellopeTypeDef,
+		notificationTypeDef
 	],
 	[
 		anaQueries,
 		feedQueries,
 		mulanQueries,
 		postsQueries,
-		vanellopeQueries
+		vanellopeQueries,
+		notificationQueries
 	],
 	[
 		anaMutations,
 		mulanMutations,
 		postsMutations,
-		vanellopeMutations
+		vanellopeMutations,
+		notificationMutations
 	]
 );
 
@@ -79,6 +89,7 @@ export default makeExecutableSchema({
 		anaResolvers,
 		postsResolvers,
 		mulanResolvers,
-		vanellopeResolvers
+		vanellopeResolvers,
+		notificationResolvers
 	)
 });

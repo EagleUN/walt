@@ -14,7 +14,9 @@ const resolvers = {
         following: (_, { userId }) =>
 			generalRequest(`${URL}/users/${userId}/following`, 'GET'),
 		follows: (_, {followerId, followingId } ) =>
-			generalRequest(`${URL}/users/${followerId}/following/${followingId}`, 'GET')
+			generalRequest(`${URL}/users/${followerId}/following/${followingId}`, 'GET'),
+		userList: (_, { userId } ) =>
+			generalRequest(`${URL}/users/${userId}/userList`, 'GET')
 	},
 	Mutation: {
 		createFollow: (_, { followerId, followingId }) =>

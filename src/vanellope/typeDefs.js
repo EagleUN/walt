@@ -50,7 +50,7 @@ export const vanellopeQueries = `
 export const vanellopeMutations = `
     createUser(user: NewUser!): User!
     updateUser(user: updateUser!): User!
-    deleteUser(id: String!): String
+    deleteUser(id: IdUser!): String
     createNewUserSession(userSession: loginUser!): User!
     deleteUserSession: String
 `;

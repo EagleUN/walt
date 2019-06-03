@@ -8,6 +8,8 @@ const resolvers = {
 	Query: {
 		postById: (_, { id }) =>
 			generalRequest(`${URL}/${id}`, 'GET'),
+		postsByCreatorId: (_, { id }) =>
+			generalRequest(`${URL}/creator/${id}`, 'GET')
 	},
 	Mutation: {
 		createPost: (_, { post }) =>

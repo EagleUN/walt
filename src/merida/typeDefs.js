@@ -9,6 +9,7 @@ input PostInput {
 
 export const postsQueries = `
     postById(id: String!): Post!
+    postsByCreatorId(id: String!): [Post]!
 `;
 
 export const postsMutations = `

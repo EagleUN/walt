@@ -36,21 +36,28 @@ input IdUser{
     id: String!
 }
 
+type UserSession{
+    id: String!
+    session: Boolean!
+}
+
 input loginUser{
     email: String!
     password: String!
 }`;
 
+
 export const vanellopeQueries = `
     allUsers: userList!
     userById(id: IdUser!): User!
     userByEmail(email: EmailUser!): User!
+    userSess(user: loginUser!): UserSession!
 `;
 
 export const vanellopeMutations = `
     createUser(user: NewUser!): User!
     updateUser(user: updateUser!): User!
     deleteUser(id: IdUser!): String
-    createNewUserSession(userSession: loginUser!): User!
+    createNewUserSession(user: loginUser!): UserSession!
     deleteUserSession: String
 `;

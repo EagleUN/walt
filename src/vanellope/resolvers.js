@@ -11,8 +11,8 @@ const resolvers = {
 			generalRequest(`${URL}signup/user_id`, 'GET', id),
 		userByEmail: (_, { email }) =>
 			generalRequest(`${URL}signup/user_email`, 'GET', email),
-		userSess: (_, { user })
-			generalRequest(${
+		userSess: (_, { user }) =>
+			generalRequest(`${URL}log/user`, 'GET', user),
 		//tokenUser: (_) =>
 		//	generalRequest(`${URL}log/user`, 'GET'),
 	},

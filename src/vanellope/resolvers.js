@@ -11,6 +11,8 @@ const resolvers = {
 			generalRequest(`${URL}signup/user_id`, 'GET', id),
 		userByEmail: (_, { email }) =>
 			generalRequest(`${URL}signup/user_email`, 'GET', email),
+		userSess: (_, { user }) =>
+			generalRequest(`${URL}log/user`, 'GET', user),
 		//tokenUser: (_) =>
 		//	generalRequest(`${URL}log/user`, 'GET'),
 	},
@@ -21,8 +23,8 @@ const resolvers = {
 			generalRequest(`${URL}signup/user`, 'PATCH', user),
 		deleteUser: (_, { id }) =>
 			generalRequest(`${URL}signup/user`, 'DELETE', id),
-		createNewUserSession: (_, { userSession }) =>
-			generalRequest(`${URL}log/user/in`, 'POST', userSession),
+		createNewUserSession: (_, { user }) =>
+			generalRequest(`${URL}log/user/in`, 'POST', user),
 		deleteUserSession: (_) =>
 			generalRequest(`${URL}log/user/out`, 'DELETE')
 	}

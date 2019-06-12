@@ -7,15 +7,17 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 const resolvers = {
 	Query: {
 		postById: (_, { id }) =>
-			generalRequest(`${URL}/find/${id}`, 'GET'),
+			generalRequest(`${URL}/${id}`, 'GET'),
+		postsByCreatorId: (_, { id }) =>
+			generalRequest(`${URL}/creator/${id}`, 'GET')
 	},
 	Mutation: {
 		createPost: (_, { post }) =>
 			generalRequest(`${URL}`, 'POST', post),
 		updatePost: (_, { id, newContent }) =>
-			generalRequest(`${URL}/update/${id}`, 'PUT', newContent),
+			generalRequest(`${URL}/${id}`, 'PUT', newContent),
 		deletePost: (_, { id }) =>
-			generalRequest(`${URL}/delete/${id}`, 'DELETE')
+			generalRequest(`${URL}/${id}`, 'DELETE')
 	}
 };
 

@@ -11,7 +11,7 @@ type Notification {
     type: String!
     post_id: String
     content: String
-    follower_name: String!
+    follower_name: String
 }
 input NotificationInput {
     notificated_user: String

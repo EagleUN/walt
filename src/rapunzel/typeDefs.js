@@ -10,6 +10,8 @@ type Notification {
     date: String!
     type: String!
     post_id: String
+    content: String
+    follower_name: String!
 }
 input NotificationInput {
     notificated_user: String

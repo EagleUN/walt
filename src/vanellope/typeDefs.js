@@ -3,12 +3,15 @@ type User {
     id: String!
     name: String!
     last_name: String!
+    username: String!
     email: String!
+    last_login: String
 }
 
 input NewUser {
     name: String!
     last_name: String!
+    username: String!
     email: String!
     password: String!
     password_confirmation: String!
@@ -20,8 +23,10 @@ type userList {
 }
 
 input updateUser {
+    id: String!
     name: String!
     last_name: String!
+    username: String!
     email: String!
     password: String!
     password_confirmation: String!
@@ -37,8 +42,11 @@ input IdUser{
 }
 
 type UserSession{
-    id: String!
-    session: Boolean!
+    jwt: String
+}
+
+type UserMsgSession{
+    msg: String
 }
 
 input loginUser{
@@ -46,18 +54,17 @@ input loginUser{
     password: String!
 }`;
 
-
 export const vanellopeQueries = `
     allUsers: userList!
     userById(id: IdUser!): User!
     userByEmail(email: EmailUser!): User!
-    userSess(user: loginUser!): UserSession!
+    userSess: UserMsgSession
 `;
 
 export const vanellopeMutations = `
     createUser(user: NewUser!): User!
-    updateUser(user: updateUser!): User!
+    updateUser(user: updateUser!): String
     deleteUser(id: IdUser!): String
-    createNewUserSession(user: loginUser!): UserSession!
-    deleteUserSession: String
+    createNewUserSession(user: loginUser!): UserSession
+    editUserSession(user: updateUser!): User
 `;

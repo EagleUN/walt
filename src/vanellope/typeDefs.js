@@ -42,7 +42,7 @@ input IdUser{
 }
 
 type UserSession{
-    jwt: String
+    jwt: String!
 }
 
 type UserMsgSession{
@@ -65,6 +65,6 @@ export const vanellopeMutations = `
     createUser(user: NewUser!): User!
     updateUser(user: updateUser!): String
     deleteUser(id: IdUser!): String
-    createNewUserSession(user: loginUser!): UserSession
+    createNewUserSession(user: loginUser!): UserSession!
     editUserSession(user: updateUser!): User
 `;

@@ -13,8 +13,6 @@ const resolvers = {
 			generalRequest(`${URL}signup/user_email`, 'GET', email),
 		userSess: (_, { user }) =>
 			generalRequest(`${URL}log/user`, 'GET', user),
-		//tokenUser: (_) =>
-		//	generalRequest(`${URL}log/user`, 'GET'),
 	},
 	Mutation: {
 		createUser: (_, { user }) =>
@@ -25,8 +23,8 @@ const resolvers = {
 			generalRequest(`${URL}signup/user`, 'DELETE', id),
 		createNewUserSession: (_, { user }) =>
 			generalRequest(`${URL}log/user/in`, 'POST', user),
-		deleteUserSession: (_) =>
-			generalRequest(`${URL}log/user/out`, 'DELETE')
+		editUserSession: (_) =>
+			generalRequest(`${URL}log/user/edit`, 'PATCH')
 	}
 };
 

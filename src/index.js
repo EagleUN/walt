@@ -18,6 +18,7 @@ app.use(koaCors());
 
 // read token from header
 app.use(async (ctx, next) => {
+	console.log({ctx});
 	if (ctx.header.authorization) {
 		console.log(`header is: ${ctx.header}`);
 		console.log(`header.authorization is: ${ctx.header.authorization}`);

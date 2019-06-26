@@ -43,6 +43,7 @@ input IdUser{
 
 type UserSession{
     jwt: String!
+    id: String!
 }
 
 type UserMsgSession{

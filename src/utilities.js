@@ -1,6 +1,6 @@
 import request from 'request-promise-native';
 import { formatError } from 'graphql';
-
+import { url as vanellopeUrl, port as vanellopePort } from './vanellope/server';
 /**
  * Creates a request following the given parameters
  * @param {string} url
@@ -13,6 +13,7 @@ export async function generalRequest(url, method, body, fullResponse) {
 	const parameters = {
 		method,
 		uri: encodeURI(url),
+		//headers: {'Content-Type': 'Application/json' },
 		body,
 		json: true,
 		resolveWithFullResponse: fullResponse
@@ -87,4 +88,38 @@ export function formatErr(error) {
 		return { message, code, description, path };
 	}
 	return data;
+}
+
+/**
+ * Checks with Vanellope if the sessionToken is valid for the user with id userId.
+ * If the token is valid, then generalRequest(url, data) is called.
+ * @param {string} userId 
+ * @param {string} sessionToken 
+ * @param {string} url 
+ * @param {object} data
+ */
+export async function protectedGeneralRequest(userId, url, data, context, info) {
+	console.log(`context is: ${JSON.stringify(context)}`);
+	console.log(`context.state is: ${JSON.stringify(context.state)}`);
+	console.log(`info is: ${JSON.stringify(info)}`);
+	const sessionToken = context.state.token;
+	console.log(`token is: ${JSON.stringify(token)}`);
+	try {
+		await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`);
+		// check if status == 401
+		// or check if response["msg"] matches 'You are currently logged-in as *' (?)
+		console.log(`Response is ${JSON.stringify(response)}`)
+		if (response.status >= 200 && response.status < 300) {
+			return await generalRequest(url, data);
+		}
+	}
+	catch(err) {
+		console.log("Error in request to authenticate to Vanellope")
+		return err; 
+	}
+	return {
+		code: 401, // Not authorized
+		id : "Authentication error",
+		description : `Session token ${sessionToken} for user ${userId} is not valid`
+	};
 }

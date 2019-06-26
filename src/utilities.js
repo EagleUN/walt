@@ -9,11 +9,11 @@ import { url as vanellopeUrl, port as vanellopePort } from './vanellope/server';
  * @param {boolean} [fullResponse]
  * @return {Promise.<*>} - promise with the error or the response object
  */
-export async function generalRequest(url, method, body, fullResponse) {
+export async function generalRequest(url, method, body, fullResponse, authToken) {
 	const parameters = {
 		method,
 		uri: encodeURI(url),
-		//headers: {'Content-Type': 'Application/json' },
+		headers: {'Authorization': authToken },
 		body,
 		json: true,
 		resolveWithFullResponse: fullResponse
@@ -105,12 +105,12 @@ export async function protectedGeneralRequest(userId, url, data, context, info) 
 	const sessionToken = context.state.token;
 	console.log(`token is: ${JSON.stringify(token)}`);
 	try {
-		await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`);
+		await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET');
 		// check if status == 401
 		// or check if response["msg"] matches 'You are currently logged-in as *' (?)
 		console.log(`Response is ${JSON.stringify(response)}`)
-		if (response.status >= 200 && response.status < 300) {
-			return await generalRequest(url, data);
+		if (response.user_id == userId ) {
+			return await generalRequest(url, data, undefined, undefined, sessionToken );
 		}
 	}
 	catch(err) {

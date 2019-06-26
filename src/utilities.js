@@ -109,7 +109,7 @@ export async function protectedGeneralRequest(userId, url, data, context, info) 
 		// check if status == 401
 		// or check if response["msg"] matches 'You are currently logged-in as *' (?)
 		console.log(`Response is ${JSON.stringify(response)}`)
-		if ( response.status === 401 ) {
+		if (response.status >= 200 && response.status < 300) {
 			return await generalRequest(url, data);
 		}
 	}

@@ -100,14 +100,11 @@ export function formatErr(error) {
  */
 export async function protectedGeneralRequest(userId, url, data, context, info) {
 	console.log(`context is: ${JSON.stringify(context)}`);
-	console.log(`context.state is: ${JSON.stringify(context.state)}`);
 	console.log(`info is: ${JSON.stringify(info)}`);
-	const sessionToken = context.state.token;
-	console.log(`token is: ${JSON.stringify(token)}`);
+	const sessionToken = context.token;
+	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {
 		await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET');
-		// check if status == 401
-		// or check if response["msg"] matches 'You are currently logged-in as *' (?)
 		console.log(`Response is ${JSON.stringify(response)}`)
 		if (response.user_id == userId ) {
 			return await generalRequest(url, data, undefined, undefined, sessionToken );

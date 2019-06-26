@@ -18,11 +18,11 @@ app.use(koaCors());
 
 // read token from header
 app.use(async (ctx, next) => {
-	console.log({ctx});
+	console.log("----------------------------------------");
 	if (ctx.header.authorization) {
 		console.log(`header is: ${ctx.header}`);
 		console.log(`header.authorization is: ${ctx.header.authorization}`);
-		const token = ctx.header.authorization.match(/Bearer ([A-Za-z0-9]+)/);
+		const token = ctx.header.authorization.match(/Bearer ([^]+)/);
 		if (token && token[1]) {
 			ctx.state.token = token[1];
 			console.log(`token is: ${ctx.state.token}`);

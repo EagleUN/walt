@@ -46,8 +46,9 @@ type UserSession{
     id: String!
 }
 
-type UserMsgSession{
-    msg: String
+type CheckUserSession{
+    id: String!
+    email: String!
 }
 
 input loginUser{
@@ -59,7 +60,7 @@ export const vanellopeQueries = `
     allUsers: userList!
     userById(id: IdUser!): User!
     userByEmail(email: EmailUser!): User!
-    userSess: UserMsgSession
+    userSess: CheckUserSession!
 `;
 
 export const vanellopeMutations = `

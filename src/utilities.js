@@ -13,7 +13,7 @@ export async function generalRequest(url, method, body, fullResponse, authToken)
 	const parameters = {
 		method,
 		uri: encodeURI(url),
-		headers: {'Authorization': authToken },
+		headers: {'Authorization': `Bearer ${authToken}` },
 		body,
 		json: true,
 		resolveWithFullResponse: fullResponse
@@ -104,10 +104,12 @@ export async function protectedGeneralRequest(userId, url, data, context, info) 
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {
-		await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET');
+		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', undefined, undefined, sessionToken);
 		console.log(`Response is ${JSON.stringify(response)}`)
-		if (response.user_id == userId ) {
-			return await generalRequest(url, data, undefined, undefined, sessionToken );
+		if (response.id === userId ) {
+			const vanellopeResponse = await generalRequest(url, data);
+			console.log({vanellopeResponse});
+			return vanellopeResponse;
 		}
 	}
 	catch(err) {

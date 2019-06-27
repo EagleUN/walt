@@ -1,4 +1,4 @@
-import { generalRequest, getRequest } from '../utilities';
+import { protectedGeneralRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
@@ -9,18 +9,20 @@ console.log(`ANA EntryPoint: ${entryPoint}`);
 
 const resolvers = {
 	Query: {
-		followers: (_, { userId }) =>
-			generalRequest(`${URL}/users/${userId}/followers`, 'GET'),
-        following: (_, { userId }) =>
-			generalRequest(`${URL}/users/${userId}/following`, 'GET'),
-		follows: (_, {followerId, followingId } ) =>
-			generalRequest(`${URL}/users/${followerId}/following/${followingId}`, 'GET')
+		followers: (_, { userId }, context) =>
+			protectedGeneralRequest(userId, `${URL}/users/${userId}/followers`, 'GET', context),
+    following: (_, { userId }, context) =>
+			protectedGeneralRequest(userId, `${URL}/users/${userId}/following`, 'GET', context),
+		follows: (_, {followerId, followingId }, context ) =>
+			protectedGeneralRequest(userId, `${URL}/users/${followerId}/following/${followingId}`, 'GET', context),
+		userList: (_, { userId }, context ) =>
+			protectedGeneralRequest(userId, `${URL}/users/${userId}/userList`, 'GET', context)
 	},
 	Mutation: {
-		createFollow: (_, { followerId, followingId }) =>
-			generalRequest(`${URL}/users/${followerId}/following/`, 'POST', { followingId } ),
-		deleteFollow: (_, { followerId, followingId }) =>
-			generalRequest(`${URL}/users/${followerId}/following/${followingId}`, 'DELETE')
+		createFollow: (_, { followerId, followingId }, context) =>
+			protectedGeneralRequest(followerId, `${URL}/users/${followerId}/following/`, 'POST', context, { followingId } ),
+		deleteFollow: (_, { followerId, followingId }, context) =>
+			protectedGeneralRequest(followerId, `${URL}/users/${followerId}/following/${followingId}`, 'DELETE', context)
 	}
 };
 

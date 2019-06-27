@@ -100,7 +100,6 @@ export function formatErr(error) {
  */
 export async function protectedGeneralRequest(userId, url, data, context, body) {
 	console.log(`context is: ${JSON.stringify(context)}`);
-	console.log(`info is: ${JSON.stringify(info)}`);
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {

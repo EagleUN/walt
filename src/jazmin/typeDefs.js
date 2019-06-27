@@ -6,5 +6,5 @@ type MusicList {
 `;
 
 export const jazminQueries = `
-    getMusicList(email: String!): MusicList!    
+    getMusicList(id: String!): MusicList!    
 `;

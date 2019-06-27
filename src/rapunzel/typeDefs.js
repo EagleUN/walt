@@ -10,11 +10,23 @@ type Notification {
     date: String!
     type: String!
     post_id: String
+    content: String
+    follower_name: String!
 }
+type UserTokens{
+    user_id: String!
+    tokens: [String!]!
+}
+
 input NotificationInput {
     notificated_user: String
     follower: String!
     post_id: String
+}
+
+input UserTokensInput{
+    user_id: String!
+    token: String!
 }`;
 
 export const notificationQueries = `
@@ -25,4 +37,5 @@ export const notificationQueries = `
 export const notificationMutations = `
     createShareNotification(notification: NotificationInput!): Notification!
     createFollowNotification(notification: NotificationInput!): Notification!
+    addToken(token: UserTokensInput!): UserTokens!
 `;

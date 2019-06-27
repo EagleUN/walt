@@ -15,5 +15,6 @@ services:
       MERIDA_ENTRY: 'posts'
       JAZMIN_PORT: '3006'
       JAZMIN_ENTRY: 'soapservice'
+      VANELLOPE_PORT: '3001'
     ports:
       - '5000:5000'

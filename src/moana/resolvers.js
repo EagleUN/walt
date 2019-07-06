@@ -1,4 +1,4 @@
-import { generalRequest } from '../utilities';
+import { generalRequest, protectedGeneralRequest } from '../utilities';
 
 import { url, port, entryPoint } from './server';
 

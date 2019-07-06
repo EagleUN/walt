@@ -51,6 +51,12 @@ type CheckUserSession{
     email: String!
 }
 
+type CheckUserSession2{
+    jwt: String!
+    id: String!
+    session: String!
+}
+
 input loginUser{
     email: String!
     password: String!
@@ -61,6 +67,7 @@ export const vanellopeQueries = `
     userById(id: IdUser!): User!
     userByEmail(email: EmailUser!): User!
     userSess: CheckUserSession!
+    userSess2(user: loginUser!): CheckUserSession2!
 `;
 
 export const vanellopeMutations = `

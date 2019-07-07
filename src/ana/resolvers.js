@@ -3,9 +3,7 @@ import { url, port, entryPoint } from './server';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
 
-console.log(`ANA URL: ${url}`);
-console.log(`ANA PORT: ${port}`);
-console.log(`ANA EntryPoint: ${entryPoint}`);
+console.log(`THIS IS SPARTA!!!`);
 
 const resolvers = {
 	Query: {

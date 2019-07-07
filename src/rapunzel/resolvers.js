@@ -5,8 +5,8 @@ const URL = `http://${url}:${port}`;
 
 const resolvers = {
 	Query: {
-		NotificationByUser: (_, { user }) =>
-			protectedGeneralRequest(user, `${URL}/notifications/${user}`, 'GET'),
+		// NotificationByUser: (_, { user }) =>
+		// 	protectedGeneralRequest(user, `${URL}/notifications/${user}`, 'GET'),
 	},
 	Mutation: {
 		createShareNotification: (_, { notification }) =>

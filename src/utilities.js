@@ -11,7 +11,7 @@ import { url as vanellopeUrl, port as vanellopePort } from './vanellope/server';
  */
 export async function generalRequest(url, method, body, fullResponse, authToken) {
 	console.log(`generalRequset, method=${method}`);
-	console.log(`generalRequset, body=${body}`);
+	console.log(`generalRequset, body`);
 	console.log({ body });
 	console.log(`generalRequset, url=${url}`);
 

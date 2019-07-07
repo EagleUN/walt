@@ -122,3 +122,36 @@ export async function protectedGeneralRequest(userId, url, data, context, info) 
 		description : `Session token ${sessionToken} for user ${userId} is not valid`
 	};
 }
+
+
+
+/**
+ * Checks with Vanellope if the sessionToken is valid for the user with id userId.
+ * If the token is valid, then generalRequest(url, data) is called.
+ * @param {string} userId 
+ * @param {string} sessionToken 
+ */
+export async function protectedGetRequest(userId, url, context) {
+	console.log(`context is: ${JSON.stringify(context)}`);
+	const sessionToken = context.token;
+	console.log(`token is: ${JSON.stringify(sessionToken)}`);
+	try {
+		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', body, undefined, sessionToken);
+		console.log(`Response is ${JSON.stringify(response)}`)
+		if (response.id === userId ) {
+			const vanellopeResponse = await generalRequest(url, 'GET');
+			console.log({vanellopeResponse});
+			return vanellopeResponse;
+		}
+	}
+	catch(err) {
+		console.log("Error in request to authenticate to Vanellope")
+		return err; 
+	}
+	return {
+		code: 401, // Not authorized
+		id : "Authentication error",
+		description : `Session token ${sessionToken} for user ${userId} is not valid`
+	};
+}
+

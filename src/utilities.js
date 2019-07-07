@@ -102,11 +102,10 @@ export async function protectedGeneralRequest(userId, url, data, context) {
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {
-		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', undefined, undefined, sessionToken);
-		if (response.id === userId ) {
-			const vanellopeResponse = await generalRequest(url, data);
-			console.log({vanellopeResponse});
-			return vanellopeResponse;
+		const vanellopeResponse = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', body, undefined, sessionToken);
+		if (vanellopeResponse.id === userId ) {
+			const response = await generalRequest(url, data);
+			return response;
 		}
 	}
 	catch(err) {
@@ -132,11 +131,10 @@ export async function protectedGetRequest(userId, url, context) {
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {
-		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', body, undefined, sessionToken);
-		if (response.id === userId ) {
-			const vanellopeResponse = await generalRequest(url, 'GET');
-			console.log({vanellopeResponse});
-			return vanellopeResponse;
+		const vanellopeResponse = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', undefined, undefined, sessionToken);
+		if (vanellopeResponse.id === userId ) {
+			const response = await generalRequest(url, 'GET');
+			return response;
 		}
 	}
 	catch(err) {

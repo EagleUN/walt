@@ -101,13 +101,12 @@ export function formatErr(error) {
 export async function protectedGeneralRequest(userId, url, method, data, context) {
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
+	console.log(`userId is: ${userId}`);
 	try {
 		const vanellopeResponse = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, method, data, undefined, sessionToken);
-		console.log({ vanellopeResponse });
 		if (vanellopeResponse.id === userId ) {
 			console.log("auth OK!");
 			const response = await generalRequest(url, data);
-			console.log({ response });
 			return response;
 		}
 	}

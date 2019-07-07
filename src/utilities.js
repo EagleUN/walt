@@ -103,9 +103,11 @@ export async function protectedGeneralRequest(userId, url, method, data, context
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {
 		const vanellopeResponse = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, method, data, undefined, sessionToken);
+		console.log({ vanellopeResponse });
 		if (vanellopeResponse.id === userId ) {
 			console.log("auth OK!");
 			const response = await generalRequest(url, data);
+			console.log({ response });
 			return response;
 		}
 	}

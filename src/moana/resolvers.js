@@ -6,15 +6,15 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
-		homeFeedForUserHack: (_, { id }) =>
-			generalRequest( `${URL}/home/${id}`, 'GET'),
-		profileFeedForUserHack: (_, { id }) =>
-			generalRequest(`${URL}/profile/${id}`, 'GET'),
-
 		homeFeedForUser: (_, { id }, context, info) =>
 			protectedGeneralRequest( id, `${URL}/home/${id}`, 'GET', context, info ),
 		profileFeedForUser: (_, { id }, context, info) =>
-			protectedGeneralRequest( id, `${URL}/profile/${id}`, 'GET', context, info)
+			protectedGeneralRequest( id, `${URL}/profile/${id}`, 'GET', context, info),
+
+		homeFeedForUserHack: (_, { id }) =>
+			generalRequest( `${URL}/home/${id}`, 'GET'),
+		profileFeedForUserHack: (_, { id }) =>
+			generalRequest(`${URL}/profile/${id}`, 'GET')
 	}
 };
 

@@ -10,6 +10,10 @@ import { url as vanellopeUrl, port as vanellopePort } from './vanellope/server';
  * @return {Promise.<*>} - promise with the error or the response object
  */
 export async function generalRequest(url, method, body, fullResponse, authToken) {
+	console.log(`generalRequset, method=${method}`);
+	console.log(`generalRequset, body=${body}`);
+	console.log(`generalRequset, url=${url}`);
+
 	const parameters = {
 		method,
 		uri: encodeURI(url),

@@ -98,14 +98,11 @@ export function formatErr(error) {
  * @param {string} url 
  * @param {object} data
  */
-export async function protectedGeneralRequest(userId, url, data, context, info) {
-	console.log(`context is: ${JSON.stringify(context)}`);
-	console.log(`info is: ${JSON.stringify(info)}`);
+export async function protectedGeneralRequest(userId, url, data, context) {
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {
 		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', undefined, undefined, sessionToken);
-		console.log(`Response is ${JSON.stringify(response)}`)
 		if (response.id === userId ) {
 			const vanellopeResponse = await generalRequest(url, data);
 			console.log({vanellopeResponse});
@@ -132,12 +129,10 @@ export async function protectedGeneralRequest(userId, url, data, context, info) 
  * @param {string} sessionToken 
  */
 export async function protectedGetRequest(userId, url, context) {
-	console.log(`context is: ${JSON.stringify(context)}`);
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {
 		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', body, undefined, sessionToken);
-		console.log(`Response is ${JSON.stringify(response)}`)
 		if (response.id === userId ) {
 			const vanellopeResponse = await generalRequest(url, 'GET');
 			console.log({vanellopeResponse});

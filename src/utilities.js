@@ -103,7 +103,7 @@ export async function protectedGetRequest(userId, url, context) {
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {
-		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', undefined, undefined, sessionToken);
+		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', body, undefined, sessionToken);
 		console.log(`Response is ${JSON.stringify(response)}`)
 		if (response.id === userId ) {
 			const vanellopeResponse = await generalRequest(url, 'GET');

@@ -44,8 +44,8 @@ import {
 } from './vanellope/typeDefs';
 
 import {
-	jazminTypeDef,
-	jazminQueries
+	jazminQueries,
+	jazminTypeDef
 } from './jazmin/typeDefs';
 
 import anaResolvers from './ana/resolvers';

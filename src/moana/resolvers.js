@@ -6,10 +6,8 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
-		profileFeedForUser: (_, { id }) =>
-			generalRequest( `${URL}/profile/${id}`, 'GET'),
-		homeFeedForUser: (_, { id }, context) =>
-			protectedGetRequest( id, `${URL}/home/${id}`, 'GET', context ),
+		profileFeedForUser: (_, { id }, context) => { return protectedGetRequest(id, `${URL}/profile/${id}`, context); },
+		homeFeedForUser: (_, { id }, context) => { return protectedGetRequest(id, `${URL}/home/${id}`, context); },
 	}
 };
 

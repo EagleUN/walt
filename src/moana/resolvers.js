@@ -1,4 +1,4 @@
-import { generalRequest, protectedGeneralRequest } from '../utilities';
+import { protectedGeneralRequest, generalRequest } from '../utilities';
 
 import { url, port, entryPoint } from './server';
 
@@ -6,10 +6,10 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
-		profileFeedForUser: (_, { id }, context, info) =>
-			protectedGeneralRequest( id, `${URL}/profile/${id}`, 'GET', context, info),
-		homeFeedForUser: (_, { id }, context, info) =>
-			protectedGeneralRequest( id, `${URL}/home/${id}`, 'GET', context, info ),
+		profileFeedForUser: (_, { id }, context) =>
+			generalRequest( `${URL}/profile/${id}`, 'GET'),
+		homeFeedForUser: (_, { id }, context) =>
+			protectedGeneralRequest( id, `${URL}/home/${id}`, 'GET', null, context ),
 	}
 };
 

@@ -44,7 +44,7 @@ export function addParams(url, parameters) {
 			Object.prototype.hasOwnProperty.call(parameters, param) &&
 			parameters[param]
 		) {
-			if (Array.isArray(parameters[param])) {
+			if (Array.isArray(parameters[param])) {generalRequest
 				queryUrl += `${param}=${parameters[param].join(`&${param}=`)}&`;
 			} else {
 				queryUrl += `${param}=${parameters[param]}&`;
@@ -98,16 +98,15 @@ export function formatErr(error) {
  * @param {string} url 
  * @param {object} data
  */
-export async function protectedGeneralRequest(userId, url, data, context, info) {
+export async function protectedGeneralRequest(userId, url, method, data, context) {
 	console.log(`context is: ${JSON.stringify(context)}`);
-	console.log(`info is: ${JSON.stringify(info)}`);
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {
 		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', undefined, undefined, sessionToken);
 		console.log(`Response is ${JSON.stringify(response)}`)
 		if (response.id === userId ) {
-			const vanellopeResponse = await generalRequest(url, data);
+			const vanellopeResponse = await generalRequest(url, method, data);
 			console.log({vanellopeResponse});
 			return vanellopeResponse;
 		}

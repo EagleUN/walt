@@ -9,10 +9,7 @@ const resolvers = {
 		homeFeedForUser: (_, { id }, context, info) =>
 			protectedGeneralRequest( id, `${URL}/home/${id}`, 'GET', context, info ),
 		profileFeedForUser: (_, { id }, context, info) =>
-			protectedGeneralRequest( id, `${URL}/profile/${id}`, 'GET', context, info),
-
-		homeFeedForUserHack: (_, { id }) =>
-			generalRequest( `${URL}/home/${id}`, 'GET')
+			protectedGeneralRequest( id, `${URL}/profile/${id}`, 'GET', context, info)
 	}
 };
 

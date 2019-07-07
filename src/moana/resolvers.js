@@ -8,7 +8,7 @@ const resolvers = {
 	Query: {
 		homeFeedForUserHack: (_, { id }) =>
 			generalRequest( `${URL}/home/${id}`, 'GET'),
-		profileFeedForHack: (_, { id }) =>
+		profileFeedForUserHack: (_, { id }) =>
 			generalRequest(`${URL}/profile/${id}`, 'GET'),
 
 		homeFeedForUser: (_, { id }, context, info) =>

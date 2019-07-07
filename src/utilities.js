@@ -110,7 +110,7 @@ export async function protectedGeneralRequest(userId, url, method, data, context
 		const vanellopeResponse = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, method, data, undefined, sessionToken);
 		if (vanellopeResponse.id === userId ) {
 			console.log("auth OK!");
-			const response = await generalRequest(url, data);
+			const response = await generalRequest(url, method, data);
 			return response;
 		}
 	}

@@ -98,12 +98,13 @@ export function formatErr(error) {
  * @param {string} url 
  * @param {object} data
  */
-export async function protectedGeneralRequest(userId, url, data, context) {
+export async function protectedGeneralRequest(userId, url, method, data, context) {
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
 	try {
-		const vanellopeResponse = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', body, undefined, sessionToken);
+		const vanellopeResponse = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, method, body, undefined, sessionToken);
 		if (vanellopeResponse.id === userId ) {
+			console.log("auth OK!");
 			const response = await generalRequest(url, data);
 			return response;
 		}
@@ -133,6 +134,7 @@ export async function protectedGetRequest(userId, url, context) {
 	try {
 		const vanellopeResponse = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', undefined, undefined, sessionToken);
 		if (vanellopeResponse.id === userId ) {
+			console.log("auth OK!");
 			const response = await generalRequest(url, 'GET');
 			return response;
 		}

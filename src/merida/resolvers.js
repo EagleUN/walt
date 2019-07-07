@@ -1,4 +1,4 @@
-import { generalRequest } from '../utilities';
+import { generalRequest, protectedGeneralRequest } from '../utilities';
 
 import { url, port, entryPoint } from './server';
 
@@ -12,8 +12,10 @@ const resolvers = {
 			generalRequest(`${URL}/creator/${id}`, 'GET')
 	},
 	Mutation: {
-		createPost: (_, { post }) =>
+		createPostHack: (_, { post }) =>
 			generalRequest(`${URL}`, 'POST', post),
+		createPost: (_, { post }, context) =>
+			protectedGeneralRequest(post.idCreator, `${URL}`, 'POST', post, context),
 		updatePost: (_, { id, newContent }) =>
 			generalRequest(`${URL}/${id}`, 'PUT', newContent),
 		deletePost: (_, { id }) =>

@@ -12,6 +12,7 @@ import { url as vanellopeUrl, port as vanellopePort } from './vanellope/server';
 export async function generalRequest(url, method, body, fullResponse, authToken) {
 	console.log(`generalRequset, method=${method}`);
 	console.log(`generalRequset, body=${body}`);
+	console.log({ body });
 	console.log(`generalRequset, url=${url}`);
 
 	const parameters = {
@@ -124,8 +125,6 @@ export async function protectedGeneralRequest(userId, url, method, data, context
 		description : `Session token ${sessionToken} for user ${userId} is not valid`
 	};
 }
-
-
 
 /**
  * Checks with Vanellope if the sessionToken is valid for the user with id userId.

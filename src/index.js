@@ -13,7 +13,7 @@ const app = new Koa();
 const router = new KoaRouter();
 const PORT = process.env.PORT || 5000;
 
-console.log('THIS IS SPARTA 3.0');
+console.log('THIS IS SPARTA 5.0');
 
 app.use(koaLogger());
 app.use(koaCors());

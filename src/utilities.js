@@ -98,7 +98,7 @@ export function formatErr(error) {
  * @param {string} url 
  * @param {object} data
  */
-export async function protectedGeneralRequest(userId, url, method, data, context) {
+export async function protectedGetRequest(userId, url, context) {
 	console.log(`context is: ${JSON.stringify(context)}`);
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
@@ -106,7 +106,7 @@ export async function protectedGeneralRequest(userId, url, method, data, context
 		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', undefined, undefined, sessionToken);
 		console.log(`Response is ${JSON.stringify(response)}`)
 		if (response.id === userId ) {
-			const vanellopeResponse = await generalRequest(url, method, data);
+			const vanellopeResponse = await generalRequest(url, 'GET');
 			console.log({vanellopeResponse});
 			return vanellopeResponse;
 		}

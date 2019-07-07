@@ -3,8 +3,6 @@ import { url, port, entryPoint } from './server';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
 
-console.log('THIS IS SPARTA');
-
 const resolvers = {
 	Query: {
 		followers: (_, { userId }) =>

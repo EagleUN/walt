@@ -3,10 +3,6 @@ import { url, port, entryPoint } from './server';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
 
-console.log(`ANA URL: ${url}`);
-console.log(`ANA PORT: ${port}`);
-console.log(`ANA EntryPoint: ${entryPoint}`);
-
 const resolvers = {
 	Query: {
 		followers: (_, { userId }, context) =>

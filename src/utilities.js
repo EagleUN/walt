@@ -10,6 +10,11 @@ import { url as vanellopeUrl, port as vanellopePort } from './vanellope/server';
  * @return {Promise.<*>} - promise with the error or the response object
  */
 export async function generalRequest(url, method, body, fullResponse, authToken) {
+	console.log(`generalRequset, method=${method}`);
+	console.log(`generalRequset, body`);
+	console.log({ body });
+	console.log(`generalRequset, url=${url}`);
+
 	const parameters = {
 		method,
 		uri: encodeURI(url),
@@ -98,17 +103,16 @@ export function formatErr(error) {
  * @param {string} url 
  * @param {object} data
  */
-export async function protectedGetRequest(userId, url, context) {
-	console.log(`context is: ${JSON.stringify(context)}`);
+export async function protectedGeneralRequest(userId, url, method, data, context) {
 	const sessionToken = context.token;
 	console.log(`token is: ${JSON.stringify(sessionToken)}`);
+	console.log(`userId is: ${userId}`);
 	try {
-		const response = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', body, undefined, sessionToken);
-		console.log(`Response is ${JSON.stringify(response)}`)
-		if (response.id === userId ) {
-			const vanellopeResponse = await generalRequest(url, 'GET');
-			console.log({vanellopeResponse});
-			return vanellopeResponse;
+		const vanellopeResponse = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', undefined, undefined, sessionToken);
+		if (vanellopeResponse.id === userId ) {
+			console.log("auth OK!");
+			const response = await generalRequest(url, method, data);
+			return response;
 		}
 	}
 	catch(err) {
@@ -121,3 +125,36 @@ export async function protectedGetRequest(userId, url, context) {
 		description : `Session token ${sessionToken} for user ${userId} is not valid`
 	};
 }
+
+/**
+ * Checks with Vanellope if the sessionToken is valid for the user with id userId.
+ * If the token is valid, then generalRequest(url, data) is called.
+ * @param {string} userId 
+ * @param {string} sessionToken 
+ */
+export async function protectedGetRequest(userId, url, context) {
+	console.log('PROTECTED GET REQUEST');
+	const sessionToken = context.token;
+	console.log(`token is: ${JSON.stringify(sessionToken)}`);
+	console.log(`userId is: ${JSON.stringify(sessionToken)}`);
+	try {
+		const vanellopeResponse = await generalRequest(`http://${vanellopeUrl}:${vanellopePort}/log/user`, 'GET', undefined, undefined, sessionToken);
+		console.log("--------------- VANELLOPE RESPONSE ---------------------");
+		console.log({ vanellopeResponse });
+		if (vanellopeResponse.id === userId ) {
+			console.log("auth OK!");
+			const response = await generalRequest(url, 'GET');
+			return response;
+		}
+	}
+	catch(err) {
+		console.log("Error in request to authenticate to Vanellope")
+		return err; 
+	}
+	return {
+		code: 401, // Not authorized
+		id : "Authentication error",
+		description : `Session token ${sessionToken} for user ${userId} is not valid`
+	};
+}
+

@@ -13,19 +13,18 @@ const app = new Koa();
 const router = new KoaRouter();
 const PORT = process.env.PORT || 5000;
 
+console.log('THIS IS SPARTA 5.0');
+
 app.use(koaLogger());
 app.use(koaCors());
 
 // read token from header
 app.use(async (ctx, next) => {
-	console.log("----------------------------------------");
 	if (ctx.header.authorization) {
-		console.log(`header is: ${ctx.header}`);
-		console.log(`header.authorization is: ${ctx.header.authorization}`);
 		const token = ctx.header.authorization.match(/Bearer ([^]+)/);
 		if (token && token[1]) {
 			ctx.state.token = token[1];
-			console.log(`token is: ${ctx.state.token}`);
+			console.log(`token retrieved from header is: ${ctx.state.token}`);
 		}
 	}
 	await next();

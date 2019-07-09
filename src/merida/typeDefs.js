@@ -13,6 +13,7 @@ export const postsQueries = `
 `;
 
 export const postsMutations = `
+    createPostHack(post: PostInput!): Post!
     createPost(post: PostInput!): Post!
     deletePost(id: String!): Post!
     updatePost(id: String!, newContent: PostUpdate!): Post!

@@ -5,44 +5,19 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { mergeSchemas } from './utilities';
 
 import {
-	vanellopeMutations,
-	vanellopeQueries,
-	vanellopeTypeDef
-} from './vanellope/typeDefs';
-
-import vanellopeResolvers from './vanellope/resolvers';
-/*
-import {
-	meridaMutations,
-	meridaQueries,
-	meridaTypeDef
-} from './merida/typeDefs';
-
-import meridaResolvers from './merida/resolvers';
-
-import {
-	moanaMutations,
-	moanaQueries,
-	moanaTypeDef
-} from './moana/typeDefs';
-
-import moanaResolvers from './moana/resolvers';
+	commonTypeDef
+} from './common/typeDefs';
 
 import {
 	anaMutations,
 	anaQueries,
-	anaTypeDef
+	anaTypeDef,
 } from './ana/typeDefs';
 
-import anaResolvers from './ana/resolvers';
-
 import {
-	rapunzelMutations,
-	rapunzelQueries,
-	rapunzelTypeDef
-} from './rapunzel/typeDefs';
-
-import rapunzelResolvers from './rapunzel/resolvers';
+	feedTypeDef,
+	feedQueries
+} from './moana/typeDefs';
 
 import {
 	mulanMutations,
@@ -50,34 +25,65 @@ import {
 	mulanTypeDef
 } from './mulan/typeDefs';
 
+import {
+	notificationMutations,
+	notificationQueries,
+	notificationTypeDef
+} from './rapunzel/typeDefs';
+
+import {
+	postsMutations,
+	postsQueries,
+	postsTypeDef
+} from './merida/typeDefs';
+
+import {
+	vanellopeMutations,
+	vanellopeQueries,
+	vanellopeTypeDef
+} from './vanellope/typeDefs';
+
+import {
+	jazminQueries,
+	jazminTypeDef
+} from './jazmin/typeDefs';
+
+import anaResolvers from './ana/resolvers';
+import feedResolvers from './moana/resolvers';
+import postsResolvers from './merida/resolvers';
 import mulanResolvers from './mulan/resolvers';
-*/
+import vanellopeResolvers from './vanellope/resolvers';
+import notificationResolvers from './rapunzel/resolvers';
+import jazminResolvers from './jazmin/resolvers';
+
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
-		vanellopeTypeDef
-		/*meridaTypeDef
-		moanaTypeDef
-		anaTypeDef
-		rapunzelTypeDef
-		mulanTypeDef*/
+		commonTypeDef,
+		anaTypeDef,
+		feedTypeDef,
+		mulanTypeDef,
+		postsTypeDef,
+		vanellopeTypeDef,
+		notificationTypeDef,
+		jazminTypeDef
 	],
 	[
-		vanellopeQueries
-		/*meridaQueries
-		moanaQueries
-		anaQueries
-		rapunzelQueries
-		mulanQueries*/
+		anaQueries,
+		feedQueries,
+		mulanQueries,
+		postsQueries,
+		vanellopeQueries,
+		notificationQueries,
+		jazminQueries
 	],
 	[
-		vanellopeMutations
-		/*meridaMutations
-		moanaMutations
-		anaMutations
-		rapunzelMutations
-		mulanMutations*/
+		anaMutations,
+		mulanMutations,
+		postsMutations,
+		vanellopeMutations,
+		notificationMutations
 	]
 );
 
@@ -86,11 +92,12 @@ export default makeExecutableSchema({
 	typeDefs: mergedTypeDefs,
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
-		vanellopeResolvers
-		/*meridaResolvers
-		moanaResolvers
-		anaResolvers
-		rapunzelResolvers
-		mulanResolvers*/
+		feedResolvers,
+		anaResolvers,
+		postsResolvers,
+		mulanResolvers,
+		vanellopeResolvers,
+		notificationResolvers,
+		jazminResolvers
 	)
 });

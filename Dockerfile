@@ -1,15 +1,16 @@
 FROM node:carbon-slim
 
 # Create app directory
-WORKDIR /git/eagle_un_api
+WORKDIR /walt
 
 # Install app dependencies
-COPY package.json /git/eagle_un_api/
+COPY package.json /walt
 RUN npm install
 
 # Bundle app source
-COPY . /git/eagle_un_api/
+COPY . /walt
 RUN npm run prepublish
 
+EXPOSE 5000
+
 CMD [ "npm", "run", "runServer" ]
-EXPOSE 7000

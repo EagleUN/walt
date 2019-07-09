@@ -1,0 +1,33 @@
+mutation {
+  createFollow(followerId:"dfcb2566-1a8d-4cb3-9f46-773adee5bfb4", followingId:"35f3e5b9-be19-4533-95ae-5d1f02302de6") {
+		followerId
+    followingId
+  }
+}
+
+query {
+  followers(userId:"35f3e5b9-be19-4533-95ae-5d1f02302de6"){
+    count
+    userIds
+  }
+}
+
+query {
+  following(userId: "dfcb2566-1a8d-4cb3-9f46-773adee5bfb4") {
+    count
+    userIds
+  }
+}
+
+query {
+  follows(followerId: "dfcb2566-1a8d-4cb3-9f46-773adee5bfb4", followingId: "35f3e5b9-be19-4533-95ae-5d1f02302de6") {
+    follows
+  }
+}
+
+mutation {
+  deleteFollow(followerId:"dfcb2566-1a8d-4cb3-9f46-773adee5bfb4", followingId:"35f3e5b9-be19-4533-95ae-5d1f02302de6") {
+		followerId
+    followingId
+  }
+}

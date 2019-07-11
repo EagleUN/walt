@@ -13,8 +13,8 @@ const resolvers = {
 
 		homeFeedForUser: (_, { id }, context) =>
 			protectedGetRequest(id, `${URL}/home/${id}`, context),
-		profileFeedForUser: (_, { id }, context) =>
-			protectedGetRequest(id, `${URL}/profile/${id}`, context)
+		profileFeedForUser: (_, { id }) =>
+			generalRequest(`${URL}/profile/${id}`, 'GET')
 	}
 };
 

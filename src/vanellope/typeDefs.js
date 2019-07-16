@@ -8,6 +8,15 @@ type User {
     last_login: String
 }
 
+type User2 {
+    uuid: String!
+    name: String!
+    last_name: String!
+    username: String!
+    email: String!
+    last_login: String
+}
+
 input NewUser {
     name: String!
     last_name: String!
@@ -19,7 +28,7 @@ input NewUser {
 
 type userList {
     total: Int!
-    list: [User]!
+    list: [User2]!
 }
 
 input updateUser {
